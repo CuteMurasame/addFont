@@ -63,10 +63,6 @@ jobs:
           # try common output locations; adjust if your CMakeLists emits DLL elsewhere
           cp build_${{ matrix.arch }}/Release/addFont.dll artifacts/${{ matrix.arch }}/ || true
           cp build_${{ matrix.arch }}/Release/*.dll artifacts/${{ matrix.arch }}/ || true
-          # fallback: search for addFont.dll anywhere under build dir
-          if [ ! -f artifacts/${{ matrix.arch }}/addFont.dll ]; then
-            find build_${{ matrix.arch }} -type f -iname "addfont.dll" -exec cp {} artifacts/${{ matrix.arch }}/ \; || true
-          fi
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
